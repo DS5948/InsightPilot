@@ -5,7 +5,6 @@ import hashlib
 
 import chromadb
 from pypdf import PdfReader
-from sentence_transformers import SentenceTransformer
 
 
 # Project paths
@@ -133,21 +132,22 @@ def ingest_document(
     if not chunks:
         raise ValueError("No non-empty text chunks were created.")
 
-    # Load the embedding model only when ingestion is requested.
+    # Import and load the embedding model only when ingestion is requested.
+    from sentence_transformers import SentenceTransformer
+
     embedding_model = SentenceTransformer(EMBEDDING_MODEL_NAME)
 
     # Connect to the persistent vector database.
     collection = get_chroma_collection()
 
     # Replace only this source's existing chunks.
-    collection.delete(where={"source": filename})
+    safe_name = Path(filename).name
+    collection.delete(where={"source": safe_name})
 
     # Create stable, unique IDs based on the filename and content.
     document_hash = hashlib.sha256(
         file_bytes
     ).hexdigest()[:16]
-
-    safe_name = Path(filename).name
 
     ids = [
         f"{safe_name}_{document_hash}_{index}"
