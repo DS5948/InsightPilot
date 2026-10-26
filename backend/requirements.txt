@@ -1,0 +1,24 @@
+# API
+fastapi>=0.110
+uvicorn[standard]>=0.29
+python-multipart>=0.0.9
+pydantic>=2.0
+
+# Data
+pandas>=2.0
+numpy>=1.26
+
+# LLM + workflow
+groq>=0.9
+python-dotenv>=1.0
+sqlglot>=23.0
+langgraph>=0.2
+
+# Documents / RAG
+chromadb>=0.5
+sentence-transformers>=2.7
+pypdf>=4.0
+
+# Only needed for the old Streamlit app (app.py)
+# streamlit
+# plotly
