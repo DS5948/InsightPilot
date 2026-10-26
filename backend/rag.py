@@ -2,7 +2,6 @@
 from pathlib import Path
 
 import chromadb
-from sentence_transformers import SentenceTransformer
 from functools import lru_cache
 
 
@@ -16,6 +15,7 @@ TOP_K = 5
 
 @lru_cache(maxsize=1)
 def get_embedding_model():
+    from sentence_transformers import SentenceTransformer
     return SentenceTransformer(EMBEDDING_MODEL_NAME)
 
 def get_collection():
