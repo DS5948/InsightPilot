@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.API_BASE_URL;
+const API_BASE_URL = (import.meta.env.API_BASE_URL || "http://localhost:8000/api/v1").replace(/\/$/, "");
 
 async function request(path, options = {}) {
   const response = await fetch(`${API_BASE_URL}${path}`, options);
