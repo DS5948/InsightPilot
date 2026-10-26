@@ -55,7 +55,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://insight-pilot-bay.vercel.app/",
+        "https://insight-pilot-bay.vercel.app",
     ],
     allow_credentials=False,
     allow_methods=["*"],
